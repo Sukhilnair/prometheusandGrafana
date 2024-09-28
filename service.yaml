@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+  namespace: monitoring
+spec:
+  type: NodePort
+  ports:
+    - port: 9090
+      targetPort: 9090
+      nodePort: 30000
+  selector:
+    app: prometheus
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  type: NodePort
+  ports:
+    - port: 3000
+      targetPort: 3000
+      nodePort: 32000
+  selector:
+    app: grafana
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: flaskapp
+  namespace: monitoring
+spec:
+  type: NodePort
+  ports:
+    - port: 5000
+      targetPort: 5000
+      nodePort: 31000
+  selector:
+    app: flaskapp
